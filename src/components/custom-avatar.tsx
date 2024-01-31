@@ -1,10 +1,10 @@
 import { Avatar as AntdAvatar, AvatarProps } from "antd";
 
 type Props = AvatarProps & {
-    name: string;
-}
+  name?: string;
+};
 
-const CustomAvatar = ({ name, style, ...rest}: Props ) => {
+const CustomAvatar = ({ name, style, ...rest }: Props) => {
   return (
     <AntdAvatar
       alt={"Nick DiBartolo"}
@@ -13,8 +13,10 @@ const CustomAvatar = ({ name, style, ...rest}: Props ) => {
         backgroundColor: "#93e074",
         display: "flex",
         alignItems: "center",
-        border: "none"
+        border: "none",
+        ...style
       }}
+      {...rest}
     >
       {name}
     </AntdAvatar>
