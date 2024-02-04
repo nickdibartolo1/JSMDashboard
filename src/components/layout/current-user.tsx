@@ -1,4 +1,4 @@
-import { Popover, Button } from "antd";
+import { Popover } from "antd";
 import CustomAvatar from "../custom-avatar";
 import { useGetIdentity } from "@refinedev/core";
 
