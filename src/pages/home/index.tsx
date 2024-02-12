@@ -67,8 +67,8 @@ export const Home = () => {
         </Col>
       </Row>
 
-      <Row gutter={[32, 32]}>
-        <Col style={{ marginTop: "32px" }}>
+      <Row gutter={[32, 32]} style={{ marginTop: "32px" }}>
+        <Col xs={24}>
           <LatestActivities></LatestActivities>
         </Col>
       </Row>
