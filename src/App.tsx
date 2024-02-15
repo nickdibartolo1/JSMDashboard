@@ -65,7 +65,7 @@ function App() {
                   }
                 >
                   <Route index element={<Home />} />
-                  <Route path="./companies" element={<CompanyList/>} />
+                  <Route path="/companies" element={<CompanyList/>} />
                 </Route>
               </Routes>
               <RefineKbar />
