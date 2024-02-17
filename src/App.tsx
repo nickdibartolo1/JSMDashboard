@@ -1,8 +1,4 @@
-import {
-  Authenticated,
-  GitHubBanner,
-  Refine,
-} from "@refinedev/core";
+import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
 import { DevtoolsPanel, DevtoolsProvider } from "@refinedev/devtools";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 
@@ -21,6 +17,7 @@ import { App as AntdApp } from "antd";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 import Layout from "./components/layout";
 import { resources } from "./config/resource";
+import Create from "./pages/company/create";
 
 function App() {
   return (
@@ -65,7 +62,10 @@ function App() {
                   }
                 >
                   <Route index element={<Home />} />
-                  <Route path="/companies" element={<CompanyList/>} />
+                  <Route path="/companies">
+                    <Route index element={<CompanyList/>} ></Route>
+                    <Route path="new" element={<Create></Create>} ></Route>
+                  </Route>
                 </Route>
               </Routes>
               <RefineKbar />
