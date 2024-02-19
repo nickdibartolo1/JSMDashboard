@@ -1,9 +1,13 @@
 import React from "react";
 import CompanyList from "./list";
-import { Form, Input, Modal } from "antd";
+import { Form, Input, Modal, Select } from "antd";
 import { useGo } from "@refinedev/core";
-import { useModalForm } from "@refinedev/antd";
+import { useModalForm, useSelect } from "@refinedev/antd";
 import { CREATE_COMPANY_MUTATION } from "@/graphql/mutations";
+import { USERS_SELECT_QUERY } from "@/graphql/queries";
+import SelectOptionAvatar from "@/components/select-option-avatar";
+import { UsersSelectQuery } from "@/graphql/types";
+import { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 const Create = () => {
   const go = useGo();
@@ -28,6 +32,14 @@ const Create = () => {
     }
   });
 
+  const { selectProps, queryResult } = useSelect<GetFieldsFromList<UsersSelectQuery>>({
+    resource: "users",
+    optionLabel: "name",
+    meta: {
+      gqlQuery: USERS_SELECT_QUERY
+    }
+  });
+
   return (
     <CompanyList>
       <Modal
@@ -44,6 +56,22 @@ const Create = () => {
             rules={[{ required: true }]}
           >
             <Input placeholder="Please enter a company name"></Input>
+          </Form.Item>
+          <Form.Item
+            label="Sales Owner"
+            name="salesOwnerId"
+            rules={[{ required: true }]}
+          >
+            <Select
+              placeholder="Please select a sales owner"
+              {...selectProps}
+              options={queryResult.data?.data.map((user) => ({
+                value: user.id,
+                label: (
+                    <SelectOptionAvatar name={user.name} avatarUrl={user.avatarUrl ?? undefined} />
+                )
+              })) ?? [] }
+            ></Select>
           </Form.Item>
         </Form>
       </Modal>
