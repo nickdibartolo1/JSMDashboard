@@ -18,6 +18,7 @@ import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 import Layout from "./components/layout";
 import { resources } from "./config/resource";
 import Create from "./pages/company/create";
+import EditPage from "./pages/company/edit";
 
 function App() {
   return (
@@ -63,8 +64,9 @@ function App() {
                 >
                   <Route index element={<Home />} />
                   <Route path="/companies">
-                    <Route index element={<CompanyList/>} ></Route>
-                    <Route path="new" element={<Create></Create>} ></Route>
+                    <Route index element={<CompanyList />}></Route>
+                    <Route path="new" element={<Create />}></Route>
+                    <Route path="edit/:id" element={<EditPage />}></Route>
                   </Route>
                 </Route>
               </Routes>
