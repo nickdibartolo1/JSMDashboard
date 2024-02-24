@@ -8,7 +8,12 @@ import { GetFieldsFromList } from "@refinedev/nestjs-query";
 import { UsersSelectQuery } from "@/graphql/types";
 import { USERS_SELECT_QUERY } from "@/graphql/queries";
 import SelectOptionAvatar from "@/components/select-option-avatar";
-import { businessTypeOptions, companySizeOptions, industryOptions } from "@/constants";
+import {
+  businessTypeOptions,
+  companySizeOptions,
+  industryOptions
+} from "@/constants";
+import { CompanyContactsTable } from "./contacts-table";
 
 const EditPage = () => {
   const { saveButtonProps, formLoading, formProps, queryResult } = useForm({
@@ -102,6 +107,9 @@ const EditPage = () => {
               </Form.Item>
             </Form>
           </Edit>
+        </Col>
+        <Col xs={24} xl={12}>
+          <CompanyContactsTable />
         </Col>
       </Row>
     </div>
