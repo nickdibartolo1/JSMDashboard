@@ -2,6 +2,7 @@ import {
   KanbanBoardContainer,
   KanbanBoard
 } from "@/components/tasks/kanban/board";
+import ProjectCard from "@/components/tasks/kanban/card";
 import KanbanColumn from "@/components/tasks/kanban/column";
 import KanbanItem from "@/components/tasks/kanban/item";
 
@@ -93,7 +94,7 @@ const List = () => {
                 id={task.id}
                 data={{ ...task, stagedId: "unassigned" }}
               >
-                {task.title}
+                <ProjectCard {...task} dueDate={task.dueDate || undefined} />
               </KanbanItem>
             ))}
           </KanbanColumn>
