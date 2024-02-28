@@ -1,8 +1,23 @@
 import { Text } from "@/components/text";
 import { TextIcon } from "@/components/text-icon";
 import { User } from "@/graphql/schema.types";
-import { DeleteOutlined, EyeOutlined, MoreOutlined } from "@ant-design/icons";
-import { Button, Card, ConfigProvider, Dropdown, MenuProps, theme } from "antd";
+import { getDateColor } from "@/utilities";
+import {
+  ClockCircleOutlined,
+  DeleteOutlined,
+  EyeOutlined,
+  MoreOutlined
+} from "@ant-design/icons";
+import {
+  Button,
+  Card,
+  ConfigProvider,
+  Dropdown,
+  MenuProps,
+  Tag,
+  theme
+} from "antd";
+import dayjs from "dayjs";
 import { useMemo } from "react";
 
 type ProjectCardProps = {
@@ -43,6 +58,17 @@ const ProjectCard = ({ id, title, dueDate, users }: ProjectCardProps) => {
 
     return dropdownItems;
   }, []);
+
+  const dueDateOptions = useMemo(() => {
+    if (!dueDate) return null;
+
+    const date = dayjs(dueDate);
+
+    return {
+      color: getDateColor({ date: dueDate }) as string,
+      text: date.format("MMM DD")
+    };
+  }, [dueDate]);
 
   return (
     <ConfigProvider
@@ -90,7 +116,20 @@ const ProjectCard = ({ id, title, dueDate, users }: ProjectCardProps) => {
             gap: "8px"
           }}
         >
-          <TextIcon style={{ marginRight: '4px'}} />
+          <TextIcon style={{ marginRight: "4px" }} />
+          {dueDateOptions && (
+            <Tag
+              icon={<ClockCircleOutlined style={{ fontSize: "12px" }} />}
+              style={{
+                padding: "0 4px",
+                marginInlineEnd: "0",
+                backgroundColor:
+                  dueDateOptions.color === "default" ? "transparent" : "unset"
+              }}
+              color={dueDateOptions.color}
+              bordered={dueDateOptions.color !== "default"}
+            >{dueDateOptions.text}</Tag>
+          )}
         </div>
       </Card>
     </ConfigProvider>
