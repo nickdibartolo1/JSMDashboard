@@ -20,6 +20,8 @@ import { resources } from "./config/resource";
 import Create from "./pages/company/create";
 import EditPage from "./pages/company/edit";
 import List from "./pages/tasks/list";
+import CreateTasks from "./pages/tasks/create";
+import EditTask from "./pages/tasks/edit";
 
 function App() {
   return (
@@ -69,9 +71,17 @@ function App() {
                     <Route path="new" element={<Create />}></Route>
                     <Route path="edit/:id" element={<EditPage />}></Route>
                   </Route>
-                    <Route path="/tasks">
-                    <Route index element={<List />}></Route>
-                    </Route>
+                  <Route
+                    path="/tasks"
+                    element={
+                      <List>
+                        <Outlet></Outlet>
+                      </List>
+                    }
+                  >
+                    <Route path="new" element={<CreateTasks />}></Route>
+                    <Route path="edit/:id" element={<EditTask />}></Route>
+                  </Route>
                 </Route>
               </Routes>
               <RefineKbar />
