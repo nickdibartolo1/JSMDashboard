@@ -21,12 +21,11 @@ import Create from "./pages/company/create";
 import EditPage from "./pages/company/edit";
 import List from "./pages/tasks/list";
 import CreateTasks from "./pages/tasks/create";
-import EditTask from "./pages/tasks/edit";
+// import EditTask from "./pages/tasks/edit";
 
 function App() {
   return (
     <BrowserRouter>
-      <GitHubBanner />
       <RefineKbarProvider>
         <AntdApp>
           <DevtoolsProvider>
@@ -80,7 +79,7 @@ function App() {
                     }
                   >
                     <Route path="new" element={<CreateTasks />}></Route>
-                    <Route path="edit/:id" element={<EditTask />}></Route>
+                    {/* <Route path="edit/:id" element={<EditTask />}></Route> */}
                   </Route>
                 </Route>
               </Routes>
